@@ -23,10 +23,11 @@ Fényerő kapcsolási határérték beállítása:
 Amennyiben a mert fényerő alacsonyabb mit a beállított, az eszköt azt érzékeli, hogy sötét van. Vagyis ha a kapcsolási határértéket növeljük, a világítás előbb (nagyobb fénynél) fog kapcsolni.
     
 
+
     
 Firmware frissítés:
-Open your first sketch
-Open the LED blink example sketch: File > Examples > 01.Basics > Blink.
+Open your sketch
+Open the IdoRele.ino
 
 Select your board type and port
 Select Tools > Board > Arduino AVR Boards > Arduino Nano.
