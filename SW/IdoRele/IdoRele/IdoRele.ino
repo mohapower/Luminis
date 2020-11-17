@@ -89,7 +89,7 @@ if (currentMillis2 - previousMillis2 >= interval2){
   	Serial.print("Mert fenyero: ");
   	Serial.println(sensorValue);
 
-	Serial.print("A beallitott kapcsolasi hatarartek: ");
+	Serial.print("A beall hatarartek: ");
   	Serial.println(kapcsolasiSzint);
 
 	if(vilagosVan){
@@ -182,6 +182,40 @@ if (currentMillis2 - previousMillis2 >= interval2){
 		}
 		//Ha letelt az idozites, lekapcsoljuk a vilagitast
 		if ((currentMillis - previousMillis >= interval) && !outputFlag) {		
+			digitalWrite(ledPin, HIGH);
+			digitalWrite(lightOffOut, HIGH);
+			delay(1000);
+			digitalWrite(ledPin, LOW);
+			digitalWrite(lightOffOut, LOW);
+			outputFlag = true;
+		}
+	}
+	else
+	{
+		//ajto valtozas figyeles
+		if (digitalRead(ajtoIn) != input1Last) {
+			input1Last = digitalRead(ajtoIn);
+			valtasFlag1 = true;
+		}
+		else {
+			valtasFlag1 = false;
+		}
+		//mozgas figyeles
+		if (digitalRead(mozgasIn) != input2Last) {
+			input2Last = digitalRead(mozgasIn);
+			valtasFlag2 = true;
+		}
+		else {
+			valtasFlag2 = false;
+		}
+
+		//Ha mozgas vagy ajtonyitas van, nullazzuk az idozitot
+		if (valtasFlag1 || !digitalRead(mozgasIn)) {
+			previousMillis = currentMillis;
+			outputFlag = false;
+		}
+		//Ha letelt az idozites, lekapcsoljuk a vilagitast
+		if ((currentMillis - previousMillis >= interval) && !outputFlag) {
 			digitalWrite(ledPin, HIGH);
 			digitalWrite(lightOffOut, HIGH);
 			delay(1000);
