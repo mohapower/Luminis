@@ -1,6 +1,6 @@
 # Luminis
 
-Fényerő kapcsolási határérték beállítása:
+**Fényerő kapcsolási határérték beállítása:**
 1. Soros monitor megnyitása
   - Hardver csatlakoztatása usb kábbellel a számítógéphez
   - Arduino Ide megnyitása
@@ -25,7 +25,7 @@ Amennyiben a mert fényerő alacsonyabb mit a beállított, az eszköt azt érz�
 
 
     
-Firmware frissítés:
+**Firmware frissítés:**
 Open your sketch
 Open the IdoRele.ino
 
