@@ -1,6 +1,6 @@
 #include <EEPROM.h>
-
-const long interval = 900000; //ennyit kesleltet (ms)
+const long interval = 5000; //ennyit kesleltet (ms)
+//const long interval = 900000; //ennyit kesleltet (ms)
 //onst long interval = 30000; //ennyit kesleltet (ms)
 
 #define LIGHTSENSORPIN A0
@@ -89,7 +89,7 @@ if (currentMillis2 - previousMillis2 >= interval2){
   	Serial.print("Mert fenyero: ");
   	Serial.println(sensorValue);
 
-	Serial.print("A beall hatarartek: ");
+	Serial.print("A beallitott hatarartek: ");
   	Serial.println(kapcsolasiSzint);
 
 	if(vilagosVan){
