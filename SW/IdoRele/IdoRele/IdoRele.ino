@@ -1,6 +1,6 @@
 #include <EEPROM.h>
-const long interval = 5000; //ennyit kesleltet (ms)
-//const long interval = 900000; //ennyit kesleltet (ms)
+//const long interval = 5000; //ennyit kesleltet (ms)
+const long interval = 900000; //(15 Perc) ennyit kesleltet (ms)
 //onst long interval = 30000; //ennyit kesleltet (ms)
 
 #define LIGHTSENSORPIN A0
