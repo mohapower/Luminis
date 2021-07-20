@@ -10,6 +10,7 @@ const int ledPin = LED_BUILTIN;// the number of the LED pin
 const int lightOffOut = 10;
 const int ajtoOut = 11;
 const int mozgasOut = 12;
+const int releOut = 7;
 
 const int ajtoIn = 5; // the number of the LED pin
 const int mozgasIn = 6; // the number of the LED pin
@@ -67,9 +68,12 @@ void setup() {
 	pinMode(lightOffOut, OUTPUT);
 	pinMode(ajtoOut, OUTPUT);
 	pinMode(mozgasOut, OUTPUT);
+	pinMode(releOut, OUTPUT);
+	digitalWrite(releOut, HIGH);
 	pinMode(ajtoIn, INPUT_PULLUP);
 	pinMode(mozgasIn, INPUT_PULLUP);
 	pinMode(LIGHTSENSORPIN,  INPUT);  
+
 
 	kapcsolasiSzint = readUnsignedIntFromEEPROM(0);
 	Serial.print("Az uj kapcsolasi hatarertek: ");
@@ -126,6 +130,7 @@ if (currentMillis2 - previousMillis2 >= interval2){
 //Ha vilagos van nem tovabbitjuk az ajto es a mozgas jelet, es lekapcsoljuk a villanyt
 	if(sensorValue>(kapcsolasiSzint+hiszterezis) && vilagosVan==false){
 		vilagosVan=true;
+		digitalWrite(releOut, HIGH);
 		digitalWrite(ledPin, HIGH);
 			digitalWrite(lightOffOut, HIGH);
 			delay(1000);
@@ -177,11 +182,13 @@ if (currentMillis2 - previousMillis2 >= interval2){
 
 		//Ha mozgas vagy ajtonyitas van, nullazzuk az idozitot
 		if (valtasFlag1 || !digitalRead(mozgasIn)) {
+			digitalWrite(releOut, LOW);
 			previousMillis = currentMillis;
 			outputFlag = false;
 		}
 		//Ha letelt az idozites, lekapcsoljuk a vilagitast
-		if ((currentMillis - previousMillis >= interval) && !outputFlag) {		
+		if ((currentMillis - previousMillis >= interval) && !outputFlag) {	
+			digitalWrite(releOut, HIGH);
 			digitalWrite(ledPin, HIGH);
 			digitalWrite(lightOffOut, HIGH);
 			delay(1000);
